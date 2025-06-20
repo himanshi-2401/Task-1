@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 
-# Step 1: Load dataset
-df = pd.read_csv("food_coded.csv", encoding='ISO-8859-1')
+# Step 1: Load dataset (skip bad top rows)
+df = pd.read_csv("food_coded.csv", encoding='ISO-8859-1', skiprows=1)
 
 # Step 2: Clean column names
 df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 
-# Step 3: Check missing values
-print("Missing values:\n", df.isnull().sum())
+# Step 3: Show missing values
+print("Missing values before cleaning:\n", df.isnull().sum())
 
 # Step 4: Fill missing values
 for col in ['calories_day', 'type_sports', 'weight']:
